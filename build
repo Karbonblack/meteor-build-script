@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Create a bundle
+echo "Creating bundle..."
+meteor build $PWD/../build --architecture os.linux.x86_64
+echo "Created in ${BLUE}$PWD/../build${NC}"
+echo "Just a sec..."
+for file in $PWD/../build/*.tar.gz
+do
+  mv "$file" "$PWD/../build/bundle.tar.gz"
+done
+
+cp "$PWD/app" "$PWD/../build/app"
+
+echo "Done!"
+echo "Installation:"
+echo "1. Upload 2 files to server."
+echo "2. Mofify 'app' file and set proper URL and DB."
+echo "3. Run: sh app install"
+echo "4. Run: sh app test"
+echo "You should be able to access website using IP or domain."
+echo "5. cmd+c to stop test"
+echo "6. Run: sh app start"
+echo "Now it will continue running in background. if you need to stop, run 'sh app stop'"
+echo "Good luck."
